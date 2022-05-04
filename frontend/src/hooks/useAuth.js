@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext(null);
 
-
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(localStorage.getItem('accessToken'));
   const [user, setUser] = useState(localStorage.getItem('user'));

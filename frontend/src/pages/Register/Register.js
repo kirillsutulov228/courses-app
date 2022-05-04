@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";export default function Register(
     try {
       await register(data);
     } catch(err) {
+      console.log(err);
       for (const key in err.response.data) {
         setError(key, { message: err.response.data[key].error });
       }

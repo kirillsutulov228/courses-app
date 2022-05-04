@@ -2,7 +2,7 @@
   "name": "courses-app",
   "version": "1.0.0",
   "scripts": {
-    "start": "concurrently -k \"npm start -w backend\" \"npm start -w frontend\""
+    "start": "concurrently -k \"npm start -w ./backend\" \"npm start -w ./frontend\""
   },
   "workspaces": [
     "backend",

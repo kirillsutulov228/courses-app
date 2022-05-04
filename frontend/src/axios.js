@@ -18,14 +18,16 @@ api.interceptors.response.use((res) => res, async (err) => {
   if (err.response.status === 401 && !req.isRetry) {
     try {
       req.isRetry = true;
-      const result = await api.post('/refresh');
-      localStorage.setItem('accessToken', result.data.accessToken);
-      localStorage.setItem('user', result.data.user);
+      const refresh = await api.post('/refresh');
+      localStorage.setItem('accessToken', refresh.data.accessToken);
+      localStorage.setItem('user', refresh.data.user);
       return await api(req);
-    } catch(err) {
-      console.error(err);
+    } catch(e) {
+      return Promise.reject(e);
     }
   }
+
+  return Promise.reject(err);
 });
 
 export default api;
