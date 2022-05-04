@@ -11,7 +11,6 @@ authRouter.post('/login', async (req, res) => {
   let user = null;
 
   if (username && password) {
-    console.log('suka blya')
     user = await User.findOne({ where: { username } });
     if (!user || !await user.checkPassword(password)) {
       return res.sendStatus(404);
@@ -30,7 +29,7 @@ authRouter.post('/login', async (req, res) => {
 });
 
 authRouter.post('/refresh', async (req, res) => {
-
+  
   let refreshToken = req.cookies['refreshToken'] ?? null;
   let user = null;
 
