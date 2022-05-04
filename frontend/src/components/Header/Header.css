@@ -1,0 +1,39 @@
+.header {
+  height: 100px;
+  display: flex;
+  background-color: rgb(68, 73, 77);
+  padding: 5px;
+  align-items: center;
+}
+.logo {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 24pt;
+  margin: 0 20px;
+  color: white;
+}
+.logo__img {
+  height: 100%;
+}
+.logo__title {
+  margin: 0;
+}
+.header__nav {
+  display: flex;
+  align-items: baseline;
+  margin: 0 50px 0 20px;
+  transform: translateY(1px);
+}
+.nav_type_auth {
+  margin-left: auto;
+}
+.header__nav-link {
+  display: block;
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 14pt;
+  cursor: pointer;
+}

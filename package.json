@@ -1,0 +1,18 @@
+{
+  "name": "courses-app",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "concurrently -k \"npm start -w backend\" \"npm start -w frontend\""
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "devDependencies": {
+    "eslint": "8.14.0",
+    "eslint-plugin-react": "^7.29.4"
+  },
+  "dependencies": {
+    "concurrently": "^7.1.0"
+  }
+}
