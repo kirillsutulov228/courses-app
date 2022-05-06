@@ -5,8 +5,9 @@ function handleYupValidationError(err, req, res, next) {
   if (!res.headersSent && err instanceof ValidationError ) {
     const errorResponse = {};
     const fields = err.inner.length ? err.inner : [err];
+    console.log(err);
     for (const field of fields) {
-      errorResponse[field.path] = { value: field.value ?? null, error: field.message }
+      errorResponse[field.path] = { value: field.params.value ?? null, error: field.message }
     }
     return res.status(400).json(errorResponse);
   }

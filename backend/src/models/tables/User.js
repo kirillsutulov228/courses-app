@@ -24,17 +24,20 @@ const User = sequelize.define('users', {
   }
 });
 
+async function hashPasword(user) {
+  const password = user.getDataValue('password');
+  if (password && (user.isNewRecord || user.changed('password'))) {
+    user.setDataValue('password', await bcrypt.hash(password, 10))
+  }
+}
+
 User.addHook('afterCreate', async function (user) {
   const [role] = await Role.findOrCreate({ where: { name: 'user' } });
   await user.addRole(role);
 });
 
-User.addHook('beforeSave', async function(user) {
-  const password = user.getDataValue('password');
-  if (password && (user.isNewRecord || user.changed('password'))) {
-    user.setDataValue('password', await bcrypt.hash(password, 10))
-  }
-});
+User.addHook('beforeCreate', hashPasword);
+User.addHook('beforeUpdate', hashPasword);
 
 User.prototype.checkPassword = async function (password) {
   if (!password) return false;

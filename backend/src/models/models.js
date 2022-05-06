@@ -24,8 +24,8 @@ Score.belongsTo(Task);
 User.belongsToMany(Role, { through: 'users_roles' });
 Role.belongsToMany(User, { through: 'users_roles' });
 
-User.belongsToMany(Course, { through: 'users_subcribedCourses', as: 'subcribedCourses' });
-Course.belongsToMany(User, { through: 'users_subcribedCourses', as: 'subcribers' });
+User.belongsToMany(Course, { through: 'users_subscribedCourses', as: 'subscribedCourses' });
+Course.belongsToMany(User, { through: 'users_subscribedCourses', as: 'subscribers' });
 
 module.exports = {
   User,

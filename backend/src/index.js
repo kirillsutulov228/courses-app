@@ -12,6 +12,7 @@ const {
   handleSequelizeError,
   handleOtherErrors
 } = require('./middlewares/errorMiddlewares.js');
+const courseRouter = require('./routers/courseRouter.js');
 
 const { PORT, HOST, CORS_ORIGIN, COOKIE_SECRET } = process.env;
 
@@ -27,7 +28,8 @@ app.use(
 
 app.use(
   userRouter,
-  authRouter
+  authRouter,
+  courseRouter
 );
 
 app.use(

@@ -23,7 +23,7 @@ api.interceptors.response.use((res) => res, async (err) => {
       const refresh = await api.post('/refresh');
       localStorage.setItem('accessToken', refresh.data.accessToken);
       localStorage.setItem('user', refresh.data.user);
-      return await api(req);
+      return api(req);
     } catch(e) {
       return Promise.reject(e);
     }
