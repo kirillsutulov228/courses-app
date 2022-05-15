@@ -30,12 +30,18 @@ export function AuthProvider({ children }) {
   }
 
   const refresh = useCallback(async function() {
-    const res = await api.post('/refresh', null);
-    setUser(res.data.user);
-    localStorage.setItem('accessToken', res.data.accessToken);
-    localStorage.setItem('user', res.data.user);
-    navigate('/');
-  }, [navigate]);
+    try {
+      const res = await api.post('/refresh', null);
+      setUser(res.data.user);
+      localStorage.setItem('accessToken', res.data.accessToken);
+      localStorage.setItem('user', res.data.user);
+    } catch (err) {
+      setUser(null);
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('user');
+    }
+    //navigate('/');
+  }, []);
   
   async function logout() {
     await api.delete('/logout', null);

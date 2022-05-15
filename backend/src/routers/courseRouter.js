@@ -7,7 +7,10 @@ const { CourseValidator, SubscribeOnCourseValidator } = require('../validators/C
 const courseRouter = Router();
 
 courseRouter.get('/courses', withPaginate(async ({ offset, limit }) => {
-  return await Course.findAll({ offset, limit });
+  return [
+    await Course.findAll({ offset, limit }),
+    await Course.count()
+  ];
 }));
 
 courseRouter.get('/users/:id/createdCourses', withPaginate(async ({ req, res, offset, limit }) => {
@@ -16,7 +19,10 @@ courseRouter.get('/users/:id/createdCourses', withPaginate(async ({ req, res, of
   if (!user) {
     return res.sendStatus(404);
   }
-  return await user.getCreatedCourses({ offset, limit });
+  return [
+    await user.getCreatedCourses({ offset, limit }),
+    (await user.getCreatedCourses()).length
+  ];
 }));
 
 courseRouter.get('/users/:id/subscribedCourses', withPaginate(async ({ req, res, offset, limit }) => {
@@ -25,7 +31,10 @@ courseRouter.get('/users/:id/subscribedCourses', withPaginate(async ({ req, res,
   if (!user) {
     return res.sendStatus(404);
   }
-  return await user.getSubscribedCourses({ offset, limit });
+  return [
+    await user.getSubscribedCourses({ offset, limit }),
+    (await user.getSubscribedCourses()).length
+  ];
 }));
 
 courseRouter.get('/courses/:id', sendOne(async (req) => {

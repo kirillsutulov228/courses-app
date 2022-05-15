@@ -22,18 +22,22 @@
 }
 .header__nav {
   display: flex;
-  align-items: baseline;
+  align-items: center;
+  height: 100%;
   margin: 0 50px 0 20px;
   transform: translateY(1px);
 }
 .nav_type_auth {
   margin-left: auto;
 }
+.nav_type_auth > .header__nav-link {
+  font-size: 13pt;
+}
 .header__nav-link {
   display: block;
   color: white;
   text-decoration: none;
-  margin: 0 10px;
-  font-size: 14pt;
+  margin: 0 20px;
+  font-size: 16pt;
   cursor: pointer;
 }

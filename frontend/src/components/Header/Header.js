@@ -14,9 +14,14 @@ export default function Header() {
         <img className='logo__img' src={logo} alt=''></img>
         <p className='logo__title'>Moodlo</p>
       </div>
+      <nav className='header__nav'>
+        <Link className='header__nav-link' to='/'>Главная</Link>
+        <Link className='header__nav-link' to='/'>Курсы</Link>
+        <Link className='header__nav-link' to='/'>О нас</Link>
+      </nav>
       <nav className='header__nav nav_type_auth'>
         {user ? <>
-          <Link className='header__nav-link' to={`/users/${user.id}`}>{user.username}</Link>
+          <Link className='header__nav-link' to={`/users/${user.id}`}>Профиль: {user.username}</Link>
           <p className='header__nav-link' onClick={logout}>Выйти</p>
         </> : <>
           <Link className='header__nav-link' to="/login">Войти</Link>

@@ -10,8 +10,7 @@ function withPaginate(resultCallback, paginateOptions = { defaultLimit: 20, maxL
         limit = paginateOptions.maxLimit;
       }
       const offset = (page - 1) * limit;
-      const result = await resultCallback({ req, res, next, offset, limit });
-      const total = await result.length;
+      let  [result, total = null] = await resultCallback({ req, res, next, offset, limit });
       if (!res.headersSent) {
         return res.json({ result, page, limit, total });
       }
