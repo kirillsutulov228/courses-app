@@ -36,6 +36,8 @@ export default function Profile() {
             <h3>{user.username}</h3>
             <h6>{user.email}</h6>
             <p>No description available</p>
+            <div className='profile__button'>Редактировать</div>
+            <div className='profile__button'>Добавить в друзья</div>
           </div>
           <div className='profile__courses'></div>
         </div>
