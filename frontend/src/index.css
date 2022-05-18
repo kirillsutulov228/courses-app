@@ -17,3 +17,8 @@ code {
   margin: 20px auto;
   padding: 0 20px;
 }
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}

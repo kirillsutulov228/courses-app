@@ -5,6 +5,7 @@ import { useAuth } from '../hooks/useAuth.js';
 import Login from './Login/Login.js';
 import Profile from './Profile/Profile.js';
 import Register from './Register/Register.js';
+import Users from './Users/Users.js';
 
 function App() {
   const { refresh } = useAuth();
@@ -21,13 +22,12 @@ function App() {
   return (
     <div className='app'>
       <Header />
-      <div className='container'>
         <Routes>
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/users/:id' element={<Profile />} />
+          <Route path='/users' element={<Users />} />
         </Routes>
-      </div>
     </div>
   );
 }

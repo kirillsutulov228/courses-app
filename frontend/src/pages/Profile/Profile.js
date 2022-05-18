@@ -30,15 +30,15 @@ export default function Profile() {
   return (
     user && (
       <div className='profile'>
-        <div class='card-container'>
-          <img class='round' src={avatar} alt='user' />
-          <h3>{user.username}</h3>
-          <h6>{user.email}</h6>
-          <p>
-            No description available
-          </p>
+        <div className='container'>
+          <div class='card-container'>
+            <img class='round' src={avatar} alt='user' />
+            <h3>{user.username}</h3>
+            <h6>{user.email}</h6>
+            <p>No description available</p>
+          </div>
+          <div className='profile__courses'></div>
         </div>
-        <div className='profile__courses'></div>
       </div>
     )
   );

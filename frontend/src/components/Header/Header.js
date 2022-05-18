@@ -16,8 +16,9 @@ export default function Header() {
       </div>
       <nav className='header__nav'>
         <Link className='header__nav-link' to='/'>Главная</Link>
-        <Link className='header__nav-link' to='/'>Курсы</Link>
-        <Link className='header__nav-link' to='/'>О нас</Link>
+        <Link className='header__nav-link' to='/courses'>Курсы</Link>
+        <Link className='header__nav-link' to='/users'>Пользователи</Link>
+        <Link className='header__nav-link' to='/about'>О нас</Link>
       </nav>
       <nav className='header__nav nav_type_auth'>
         {user ? <>

@@ -31,13 +31,14 @@
   margin-left: auto;
 }
 .nav_type_auth > .header__nav-link {
-  font-size: 13pt;
+  font-size: 12pt;
 }
 .header__nav-link {
   display: block;
   color: white;
   text-decoration: none;
   margin: 0 20px;
-  font-size: 16pt;
+  font-size: 14pt;
+  white-space: nowrap;
   cursor: pointer;
 }

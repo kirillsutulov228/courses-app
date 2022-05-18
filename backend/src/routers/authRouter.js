@@ -56,7 +56,7 @@ authRouter.post('/refresh', async (req, res) => {
 })
 
 authRouter.all('/auth/**', (req, res, next) => {
-  const authorization = req.headers['authorization'];
+  const authorization = req.headers['authorization'] || '';
   if (!authorization.includes('Bearer ')) {
     return res.sendStatus(401);
   }
