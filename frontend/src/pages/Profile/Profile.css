@@ -10,6 +10,7 @@
 	max-width: 100%;
 	text-align: center;
   padding: 20px;
+  margin: 0 20px;
 }
 
 .card-container .pro {
@@ -45,15 +46,31 @@ button.primary.ghost {
 	color: #02899C;
 }
 .profile__button {
-  width: 100%;
+  width: 220px;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #1bd8e6;
-  margin: 10px 0;
+  margin: 10px 20px;
   color: white;
   border-radius: 4px;
   cursor: pointer;
   font-weight: 600;
+}
+.card-container .profile__button {
+  margin: 10px auto;
+}
+.profile {
+  display: flex;
+}
+.profile__courses {
+  flex: 1;
+}
+.profile__courses__nav {
+  display: flex;
+  background-color: #ffffff;
+	border-radius: 5px;
+  width: fit-content;
+	box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
 }

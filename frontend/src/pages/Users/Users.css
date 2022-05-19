@@ -1,9 +1,16 @@
 .users {
-	display: block;
+	display: flex;
+  flex-direction: column;
 	margin-left: auto;
-	margin-right: auto
+	margin-right: auto;
+  height: 100%;
+  flex: 1;
+  overflow: auto;
 }
-
+.users-list {
+  flex: 1;
+  display: flex;
+}
 .users h1 {
 	text-align: center;
 }
@@ -18,7 +25,6 @@ table {
 	border-radius: 20px;
 	margin-left: auto;
 	margin-right: auto;
-
 }
 
 th {

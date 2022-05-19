@@ -12,8 +12,9 @@ function App() {
 
   useEffect(() => {
     async function handleRefresh() {
-      try { await refresh(); }
-      catch (err) {}
+      try {
+        await refresh();
+      } catch (err) {}
     }
 
     handleRefresh();
@@ -22,12 +23,14 @@ function App() {
   return (
     <div className='app'>
       <Header />
+      <div className='content'>
         <Routes>
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/users/:id' element={<Profile />} />
           <Route path='/users' element={<Users />} />
         </Routes>
+      </div>
     </div>
   );
 }

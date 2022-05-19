@@ -29,17 +29,24 @@ export default function Profile() {
 
   return (
     user && (
-      <div className='profile'>
-        <div className='container'>
+      <div className='container'>
+        <div className='profile'>
           <div class='card-container'>
             <img class='round' src={avatar} alt='user' />
             <h3>{user.username}</h3>
             <h6>{user.email}</h6>
             <p>No description available</p>
             <div className='profile__button'>Редактировать</div>
-            <div className='profile__button'>Добавить в друзья</div>
+            {isCurrentUser 
+              ? <div className='profile__button'>Создать курс</div>
+              : <div className='profile__button'>Добавить в друзья</div>}
           </div>
-          <div className='profile__courses'></div>
+          <div className='profile__courses'>
+            <div className='profile__courses__nav'>
+              <div className='profile__button'>Подписанные курсы</div>
+              <div className='profile__button'>Созданные курсы</div>
+            </div>
+          </div>
         </div>
       </div>
     )

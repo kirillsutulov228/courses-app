@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
+import Loader from '../Loader/Loader.js';
 import api from './../../axios';
 import './PaginateList.css';
 
-export default function PaginateList({ fetch, children, limit = 10, emptyText = 'Список пуст', ...props }) {
+export default function PaginateList({ fetch, children, limit = 10, withLoader = true ,emptyText = 'Список пуст', ...props }) {
 
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -36,12 +37,11 @@ export default function PaginateList({ fetch, children, limit = 10, emptyText = 
 
   return (
     <div className={'paginate-list' + (props.className ? ` ${props.className}` : '')} {...props}>
+      {loading && withLoader && <Loader />}
       <div className='paginate-list__items'>
         {(data.length) 
           ? children(data) 
-          : (loading)
-            ? <div className='paginate-list__loader'>Загрузка...</div>
-            : <div className='paginate-list__empty-msg'>{emptyText}</div>
+          : !loading && <div className='paginate-list__empty-msg'>{emptyText}</div>
         }
       </div>
       <nav className='paginate-list__nav'>
