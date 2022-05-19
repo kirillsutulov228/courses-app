@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Loader from '../Loader/Loader.js';
-import api from './../../axios';
 import './PaginateList.css';
 
 export default function PaginateList({ fetch, children, limit = 10, withLoader = true ,emptyText = 'Список пуст', ...props }) {
@@ -24,13 +23,13 @@ export default function PaginateList({ fetch, children, limit = 10, withLoader =
   }, [fetch, page, limit]);
 
   function toPrevPage() {
-    if (page > 1) {
+    if (page > 1 && !loading) {
       setPage(page - 1);
     }
   }
 
   function toNextPage() {
-    if (page < maxPage) {
+    if (page < maxPage && !loading) {
       setPage(page + 1);
     }
   }

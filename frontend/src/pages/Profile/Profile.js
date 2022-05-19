@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import api from '../../axios.js';
 import { useAuth } from '../../hooks/useAuth.js';
 import './Profile.css';
+import CreateCourse from '../CreateCourse/CreateCourse.js';
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ export default function Profile() {
   const [isCurrentUser, setIsCurrentUser] = useState(false);
   const [user, setUser] = useState(null);
   const { user: currUser } = useAuth();
+  const [activePage, setActivePage] = useState('subscribedCourses');
 
   useEffect(() => {
     async function fetchUser() {
@@ -37,14 +39,28 @@ export default function Profile() {
             <h6>{user.email}</h6>
             <p>No description available</p>
             <div className='profile__button'>Редактировать</div>
-            {isCurrentUser 
-              ? <div className='profile__button'>Создать курс</div>
-              : <div className='profile__button'>Добавить в друзья</div>}
+            {isCurrentUser ? (
+              <div
+                className={'profile__button' + (activePage === 'createCourse' ? ` active` : '')}
+                onClick={() => setActivePage('createCourse')}
+              >
+                Создать курс
+              </div>
+            ) : (
+              <div className='profile__button'>Добавить в друзья</div>
+            )}
           </div>
           <div className='profile__courses'>
             <div className='profile__courses__nav'>
-              <div className='profile__button'>Подписанные курсы</div>
-              <div className='profile__button'>Созданные курсы</div>
+              <div className={'profile__button' + (activePage === 'subscribedCourses' ? ` active` : '')}>
+                Подписанные курсы
+              </div>
+              <div className={'profile__button' + (activePage === 'createdCourses' ? ` active` : '')}>
+                Созданные курсы
+              </div>
+            </div>
+            <div className='profile__courses-menu'>
+              {activePage === 'createCourse' && <CreateCourse />}
             </div>
           </div>
         </div>

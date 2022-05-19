@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Routes, Route } from 'react-router';
 import Header from '../components/Header/Header.js';
 import { useAuth } from '../hooks/useAuth.js';
+import CreateCourse from './CreateCourse/CreateCourse.js';
 import Login from './Login/Login.js';
 import Profile from './Profile/Profile.js';
 import Register from './Register/Register.js';
@@ -29,6 +30,7 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/users/:id' element={<Profile />} />
           <Route path='/users' element={<Users />} />
+          <Route path='/createCourse' element={<CreateCourse />} />
         </Routes>
       </div>
     </div>

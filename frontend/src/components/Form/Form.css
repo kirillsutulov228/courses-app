@@ -1,14 +1,14 @@
 .form {
-  margin: 10px;
   background-color: rgb(255, 255, 255);;
-  width: 420px;
+  width: 100%;
+  box-sizing: border-box;
   padding: 40px 40px 20px 40px;
   border-radius: 10px;
   border: 1px solid rgb(231, 231, 231);
   box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
 }
 .form__input-row {
-  margin: 20px 0;
+  margin: 2px 0;
 }
 .form__title {
   text-align: center;
@@ -41,6 +41,8 @@
 .form__input-error {
   color: red;
   margin: 5px 0;
+  font-size: 9pt;
+  min-height: 21px;
 }
 .form__submit-button {
   display: block;
@@ -50,9 +52,14 @@
   border-radius: 20px;
   box-sizing: border-box;
   padding: 10px;
-  margin: 30px 0 10px auto;
+  margin: 10px 0 10px auto;
   font-size: 16pt;
   color: white;
   font-weight: 600;
   cursor: pointer;
+}
+.form__on-submit-msg {
+  text-align: center;
+  margin: 0;
+  color: rgb(0, 204, 255);
 }

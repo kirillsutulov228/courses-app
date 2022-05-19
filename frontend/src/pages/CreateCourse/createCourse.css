@@ -1,0 +1,7 @@
+.create-course {
+  width: 100%;
+}
+.create-course > form {
+  border: 0;
+  box-shadow: none;
+}

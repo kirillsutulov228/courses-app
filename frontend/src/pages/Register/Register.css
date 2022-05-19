@@ -1,4 +1,5 @@
 .register-form-wrapper {
   margin: 30px auto;
-  width: fit-content;
+  width: 500px;
+  box-sizing: border-box;
 }

@@ -23,7 +23,7 @@ code {
   min-height: 100vh;
 }
 .content {
-  width: 100%;
+  width: 100vw;
   flex: 1;
   display: flex;
   flex-direction: column;
