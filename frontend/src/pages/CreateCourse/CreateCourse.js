@@ -1,5 +1,5 @@
 import Form from './../../components/Form/Form';
-import './createCourse.css';
+import './СreateCourse.css';
 import api from './../../axios';
 
 export default function CreateCourse() {

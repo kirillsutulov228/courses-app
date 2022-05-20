@@ -2,8 +2,12 @@ import PaginateList from '../../components/PaginateList/PaginateList.js';
 import { useCallback } from 'react';
 import api from './../../axios';
 import './Users.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Users(props) {
+
+  const navigate = useNavigate();
+
   const fetchUsers = useCallback(async ({ page, setMaxPage, limit }) => {
     const { data } = await api.get('/users', { params: { page, limit } });
     const maxPage = Math.ceil(data.total / limit);
@@ -32,7 +36,7 @@ export default function Users(props) {
                     </th>
                   </tr>
                   {users.map((user, index) => (
-                    <tr key={index}>
+                    <tr style={{cursor: 'pointer'}} key={index} onClick={() => navigate(`/users/${user.id}`)}>
                       <td>{user.username}</td>
                       <td>{user.email}</td>
                       <td>{user.roles[0].id === 1 ? 'Пользователь' : 'Администратор'}</td>

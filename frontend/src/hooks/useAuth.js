@@ -21,7 +21,7 @@ export function AuthProvider({ children }) {
     setUser(res.data.user);
     localStorage.setItem('accessToken', res.data.accessToken);
     localStorage.setItem('user', res.data.user);
-    navigate('/');
+    navigate('/users/' + res.data.user.id);
   }
 
   async function register(data) {

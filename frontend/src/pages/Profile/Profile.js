@@ -5,6 +5,7 @@ import api from '../../axios.js';
 import { useAuth } from '../../hooks/useAuth.js';
 import './Profile.css';
 import CreateCourse from '../CreateCourse/CreateCourse.js';
+import Courses from '../../components/Courses/Courses.js';
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -29,6 +30,16 @@ export default function Profile() {
     fetchUser();
   }, [id, currUser, navigate]);
 
+  function fetchCourses(url) {
+    return async function ({ page, setMaxPage, limit }) {
+      const response = await api.get(url, { params: { page, limit } });
+      const data = response.data;
+      const maxPage = Math.ceil(data.total / limit);
+      setMaxPage(maxPage);
+      return data.result;
+    }
+  }
+
   return (
     user && (
       <div className='container'>
@@ -37,7 +48,7 @@ export default function Profile() {
             <img class='round' src={avatar} alt='user' />
             <h3>{user.username}</h3>
             <h6>{user.email}</h6>
-            <p>No description available</p>
+            <p>Пользователь</p>
             <div className='profile__button'>Редактировать</div>
             {isCurrentUser ? (
               <div
@@ -52,15 +63,17 @@ export default function Profile() {
           </div>
           <div className='profile__courses'>
             <div className='profile__courses__nav'>
-              <div className={'profile__button' + (activePage === 'subscribedCourses' ? ` active` : '')}>
+              <div className={'profile__button' + (activePage === 'subscribedCourses' ? ` active` : '')} onClick={() => setActivePage('subscribedCourses')}>
                 Подписанные курсы
               </div>
-              <div className={'profile__button' + (activePage === 'createdCourses' ? ` active` : '')}>
+              <div className={'profile__button' + (activePage === 'createdCourses' ? ` active` : '')} onClick={() => setActivePage('createdCourses')}>
                 Созданные курсы
               </div>
             </div>
             <div className='profile__courses-menu'>
               {activePage === 'createCourse' && <CreateCourse />}
+              {activePage === 'createdCourses' && <Courses fetchCourses={fetchCourses(`users/${id}/createdCourses`)} title={'Созданные курсы'}/>}
+              {activePage === 'subscribedCourses' && <Courses fetchCourses={fetchCourses(`users/${id}/subscribedCourses`)} title={'Подписанные курсы'}/>}
             </div>
           </div>
         </div>

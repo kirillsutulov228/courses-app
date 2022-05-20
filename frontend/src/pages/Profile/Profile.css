@@ -11,6 +11,7 @@
 	text-align: center;
   padding: 20px;
   margin: 0 20px;
+  height: fit-content;
 }
 
 .card-container .pro {

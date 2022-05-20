@@ -76,9 +76,9 @@ courseRouter.delete('/auth/user/createdCourses/:id', async (req, res, next) => {
   }
 });
 
-courseRouter.post('/auth/user/subscribedCourses', async (req, res, next) => {
+courseRouter.post('/auth/user/subscribedCourses/:id', async (req, res, next) => {
   try {
-    const courseId = req.body.courseId;
+    const courseId = req.params.id;
     const userId = req.user.id;
     await SubscribeOnCourseValidator.validate({ courseId, userId });
     const user = await User.findByPk(userId);

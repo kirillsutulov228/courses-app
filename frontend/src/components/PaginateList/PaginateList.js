@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Loader from '../Loader/Loader.js';
 import './PaginateList.css';
 
-export default function PaginateList({ fetch, children, limit = 10, withLoader = true ,emptyText = 'Список пуст', ...props }) {
+export default function PaginateList({ fetch, children, limit = 10, withLoader = true ,emptyText = 'Список пуст', updateFlag, ...props }) {
 
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -17,10 +17,10 @@ export default function PaginateList({ fetch, children, limit = 10, withLoader =
       setTimeout(() => {
         setData(result);
         setLoading(false);
-      }, 1000);
+      }, 300);
     }
     loadData();
-  }, [fetch, page, limit]);
+  }, [fetch, page, limit, updateFlag]);
 
   function toPrevPage() {
     if (page > 1 && !loading) {

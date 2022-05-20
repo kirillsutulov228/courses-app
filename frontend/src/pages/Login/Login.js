@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login() {
 
-  const { login } = useAuth();
+  const { login, user } = useAuth();
   let navigate = useNavigate();
 
   async function handleLogin(data, setError) {
