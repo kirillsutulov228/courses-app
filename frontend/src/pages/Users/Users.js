@@ -32,7 +32,7 @@ export default function Users(props) {
                       <h3>Email</h3>
                     </th>
                     <th>
-                      <h3>Роль</h3>
+                      <h3>Должность</h3>
                     </th>
                   </tr>
                   {users.map((user, index) => (
