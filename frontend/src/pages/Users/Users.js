@@ -29,10 +29,10 @@ export default function Users(props) {
                       <h3>Имя пользователя</h3>
                     </th>
                     <th>
-                      <h3>Email</h3>
+                      <h3>Почта</h3>
                     </th>
                     <th>
-                      <h3>Роль</h3>
+                      <h3>Должность</h3>
                     </th>
                   </tr>
                   {users.map((user, index) => (

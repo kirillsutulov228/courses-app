@@ -23,7 +23,7 @@ export default function PaginateList({ fetch, children, limit = 10, withLoader =
   }, [fetch, page, limit, updateFlag]);
 
   useEffect(() => {
-    if (page > maxPage) {
+    if (page > maxPage && page !== 1) {
       setPage(page - 1);
     }
   }, [page, maxPage]);

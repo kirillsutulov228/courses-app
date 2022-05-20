@@ -7,7 +7,6 @@
 .courses__list {
   display: flex;
   flex: 1;
-  overflow: hidden;
 }
 .courses__title {
   margin: 5px;

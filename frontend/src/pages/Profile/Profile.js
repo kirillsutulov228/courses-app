@@ -82,10 +82,10 @@ export default function Profile() {
             <div className='profile__courses-menu'>
               {activePage === 'createCourse' && <CreateCourse />}
               {activePage === 'createdCourses' && (
-                <Courses fetchCourses={fetchCourses(`users/${id}/createdCourses`)} title={'Созданные курсы'} />
+                <Courses limit={5}  fetchCourses={fetchCourses(`users/${id}/createdCourses`)} title={'Созданные курсы'} />
               )}
               {activePage === 'subscribedCourses' && (
-                <Courses fetchCourses={fetchCourses(`users/${id}/subscribedCourses`)} title={'Подписанные курсы'} />
+                <Courses limit={5} fetchCourses={fetchCourses(`users/${id}/subscribedCourses`)} title={'Подписанные курсы'} />
               )}
             </div>
           </div>
