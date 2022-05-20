@@ -22,6 +22,12 @@ export default function PaginateList({ fetch, children, limit = 10, withLoader =
     loadData();
   }, [fetch, page, limit, updateFlag]);
 
+  useEffect(() => {
+    if (page > maxPage) {
+      setPage(page - 1);
+    }
+  }, [page, maxPage]);
+
   function toPrevPage() {
     if (page > 1 && !loading) {
       setPage(page - 1);

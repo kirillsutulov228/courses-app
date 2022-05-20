@@ -37,7 +37,7 @@ export default function Profile() {
       const maxPage = Math.ceil(data.total / limit);
       setMaxPage(maxPage);
       return data.result;
-    }
+    };
   }
 
   return (
@@ -49,31 +49,44 @@ export default function Profile() {
             <h3>{user.username}</h3>
             <h6>{user.email}</h6>
             <p>Пользователь</p>
-            <div className='profile__button'>Редактировать</div>
+
             {isCurrentUser ? (
-              <div
-                className={'profile__button' + (activePage === 'createCourse' ? ` active` : '')}
-                onClick={() => setActivePage('createCourse')}
-              >
-                Создать курс
-              </div>
+              <>
+                <div className='profile__button'>Редактировать</div>
+                <div
+                  className={'profile__button' + (activePage === 'createCourse' ? ` active` : '')}
+                  onClick={() => setActivePage('createCourse')}
+                >
+                  Создать курс
+                </div>
+              </>
             ) : (
-              <div className='profile__button'>Добавить в друзья</div>
+              currUser && <div className='profile__button'>Добавить в друзья</div>
             )}
           </div>
           <div className='profile__courses'>
             <div className='profile__courses__nav'>
-              <div className={'profile__button' + (activePage === 'subscribedCourses' ? ` active` : '')} onClick={() => setActivePage('subscribedCourses')}>
+              <div
+                className={'profile__button' + (activePage === 'subscribedCourses' ? ` active` : '')}
+                onClick={() => setActivePage('subscribedCourses')}
+              >
                 Подписанные курсы
               </div>
-              <div className={'profile__button' + (activePage === 'createdCourses' ? ` active` : '')} onClick={() => setActivePage('createdCourses')}>
+              <div
+                className={'profile__button' + (activePage === 'createdCourses' ? ` active` : '')}
+                onClick={() => setActivePage('createdCourses')}
+              >
                 Созданные курсы
               </div>
             </div>
             <div className='profile__courses-menu'>
               {activePage === 'createCourse' && <CreateCourse />}
-              {activePage === 'createdCourses' && <Courses fetchCourses={fetchCourses(`users/${id}/createdCourses`)} title={'Созданные курсы'}/>}
-              {activePage === 'subscribedCourses' && <Courses fetchCourses={fetchCourses(`users/${id}/subscribedCourses`)} title={'Подписанные курсы'}/>}
+              {activePage === 'createdCourses' && (
+                <Courses fetchCourses={fetchCourses(`users/${id}/createdCourses`)} title={'Созданные курсы'} />
+              )}
+              {activePage === 'subscribedCourses' && (
+                <Courses fetchCourses={fetchCourses(`users/${id}/subscribedCourses`)} title={'Подписанные курсы'} />
+              )}
             </div>
           </div>
         </div>
