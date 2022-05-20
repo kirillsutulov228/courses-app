@@ -12,7 +12,7 @@ export default function Courses({ fetchCourses, title, style, limit = 2 }) {
   useEffect(() => {
     async function getSubscribedCourses() {
       if (user.id) {
-        const response = await api.get(`/users/${user.id}/subscribedCourses`);
+        const response = await api.get(`/users/${user.id}/subscribedCourses`, { params: { limit: 100 } });
         const ids = response.data.result.reduce((acc, course) => {
           acc[course.id] = true;
           return acc;
@@ -61,13 +61,13 @@ export default function Courses({ fetchCourses, title, style, limit = 2 }) {
               <div className='course__item' key={course.id}>
                 <div className='course__info'>
                   <h1 className='course__name'>{course.name}</h1>
-                  <p className='course__description'>Описание: {course.description}</p>
+                  <p className='course__description'>{course.description || 'Без описания'}</p>
                 </div>
                 <div className='course__nav'>
+                <div className='course__nav-button'>Перейти к курсу</div>
                   {course.authorId === user?.id ? (
                     <>
                       <div className='course__nav-button'>Удалить курс</div>
-                      <div className='course__nav-button'>Редактировать</div>
                     </>
                   ) : (
                     user && (
