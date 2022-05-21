@@ -38,6 +38,15 @@ export default function Courses({ fetchCourses, title, style, limit = 2 }) {
     };
   }
 
+  function deleteCourse(id) {
+    return async () => {
+      if (user) {
+        await api.delete(`/auth/user/createdCourses/${id}`);
+        update();
+      }
+    }
+  }
+
   function unsubscribeFromCourse(id) {
     return async () => {
       if (user) {
@@ -67,7 +76,7 @@ export default function Courses({ fetchCourses, title, style, limit = 2 }) {
                 <div className='course__nav-button'>Перейти к курсу</div>
                   {course.authorId === user?.id ? (
                     <>
-                      <div className='course__nav-button'>Удалить курс</div>
+                      <div className='course__nav-button' onClick={deleteCourse(course.id)}>Удалить курс</div>
                     </>
                   ) : (
                     user && (
