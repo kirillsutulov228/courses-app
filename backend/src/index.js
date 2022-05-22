@@ -27,8 +27,8 @@ app.use(
 );
 
 app.use(
-  userRouter,
   authRouter,
+  userRouter,
   courseRouter
 );
 

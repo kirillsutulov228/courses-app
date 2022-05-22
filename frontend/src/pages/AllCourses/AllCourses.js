@@ -10,7 +10,7 @@ export default function AllCourses(props) {
   }
 
   return (
-    <div className='all-courses'>
+    <div className='courses__courses'>
       <Courses title={"Список курсов"} style={{flex: '1'}} fetchCourses={getAllCourses} limit={10} />
     </div>
   );
