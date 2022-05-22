@@ -12,7 +12,7 @@ import CoursesPage from './Courses/CoursesPage.js';
 
 
 function App() {
-  const { refresh } = useAuth();
+  const { refresh, user } = useAuth();
 
   useEffect(() => {
     async function handleRefresh() {
@@ -30,7 +30,7 @@ function App() {
       <div className='content'>
         <Routes>
           <Route path='/login' element={<Login />} />
-          <Route path='/courses' element={<AllCourses />}/>
+          <Route path='/courses' element={user ? <CoursesPage/> : <AllCourses />}/>
           <Route path='/register' element={<Register />} />
           <Route path='/users/:id' element={<Profile />} />
           <Route path='/users' element={<Users />} />
