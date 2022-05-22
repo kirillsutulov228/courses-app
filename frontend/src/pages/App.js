@@ -8,6 +8,8 @@ import Login from './Login/Login.js';
 import Profile from './Profile/Profile.js';
 import Register from './Register/Register.js';
 import Users from './Users/Users.js';
+import CoursesPage from './Courses/CoursesPage.js';
+
 
 function App() {
   const { refresh } = useAuth();
@@ -32,6 +34,7 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/users/:id' element={<Profile />} />
           <Route path='/users' element={<Users />} />
+          <Route path='/courses' element={<CoursesPage />} />
         </Routes>
       </div>
     </div>
