@@ -41,6 +41,16 @@ td {
 	border-radius: 10px;
 }
 
+.actionBtn:hover {
+	background-color: #1bd8e6;
+}
+
+.actionBtn {
+	background-color: #aff4ff;
+	text-align:center;
+	transition: background-color 100ms ease-out 0ms
+}
+
 
 button.primary {
 	background-color: #03BFCB;

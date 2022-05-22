@@ -70,7 +70,7 @@ export default function Profile() {
                 className={'profile__button' + (activePage === 'subscribedCourses' ? ` active` : '')}
                 onClick={() => setActivePage('subscribedCourses')}
               >
-                Подписанные курсы
+                Подписки на курсы
               </div>
               <div
                 className={'profile__button' + (activePage === 'createdCourses' ? ` active` : '')}
@@ -85,8 +85,9 @@ export default function Profile() {
                 <Courses limit={5}  fetchCourses={fetchCourses(`users/${id}/createdCourses`)} title={'Созданные курсы'} />
               )}
               {activePage === 'subscribedCourses' && (
-                <Courses limit={5} fetchCourses={fetchCourses(`users/${id}/subscribedCourses`)} title={'Подписанные курсы'} />
+                <Courses limit={5} fetchCourses={fetchCourses(`users/${id}/subscribedCourses`)} title={'Подписки на курсы'} />
               )}
+
             </div>
           </div>
         </div>

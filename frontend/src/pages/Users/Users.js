@@ -34,12 +34,16 @@ export default function Users(props) {
                     <th>
                       <h3>Должность</h3>
                     </th>
+                    <th>
+                      <h3>Действия</h3>
+                    </th>
                   </tr>
                   {users.map((user, index) => (
-                    <tr style={{cursor: 'pointer'}} key={index} onClick={() => navigate(`/users/${user.id}`)}>
+                    <tr>
                       <td>{user.username}</td>
                       <td>{user.email}</td>
                       <td>{user.roles[0].id === 1 ? 'Пользователь' : 'Администратор'}</td>
+                      <td className='actionBtn' style={{cursor: 'pointer'}} key={index} onClick={() => navigate(`/users/${user.id}`)}>Открыть профиль</td>
                     </tr>
                   ))}
                 </tbody>
