@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Routes, Route } from 'react-router';
 import Header from '../components/Header/Header.js';
 import { useAuth } from '../hooks/useAuth.js';
+import AllCourses from './AllCourses/AllCourses.js';
 import CreateCourse from './CreateCourse/CreateCourse.js';
 import Login from './Login/Login.js';
 import Profile from './Profile/Profile.js';
@@ -27,6 +28,7 @@ function App() {
       <div className='content'>
         <Routes>
           <Route path='/login' element={<Login />} />
+          <Route path='/courses' element={<AllCourses />}/>
           <Route path='/register' element={<Register />} />
           <Route path='/users/:id' element={<Profile />} />
           <Route path='/users' element={<Users />} />
