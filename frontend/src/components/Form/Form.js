@@ -1,17 +1,20 @@
-import { Children, cloneElement } from 'react';
+import { Children, cloneElement, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import './Form.css';
 
 export default function Form({ children, schema = null, defaultValues, title = 'Form', submitTitle = 'Submit', className, onSubmit, successMessage }) {
   const { register, setError, handleSubmit, formState, reset } = useForm({ resolver: schema, reValidateMode: 'onSubmit', defaultValues });
   console.log(defaultValues);
+
+  useEffect(() => {
+    if (formState.isSubmitSuccessful) {
+      setTimeout(() => reset(defaultValues, { keepIsSubmitted: false, keepErrors: true, keepValues: true }), 2000);
+    }
+  }, [formState, defaultValues, reset]);
+
   async function handler(data) {
     try {
       await onSubmit(data, setError);
-      if (formState.isSubmitSuccessful) {
-        reset(defaultValues, { keepIsSubmitted: true, keepValues: false });
-        setTimeout(() => reset(defaultValues, { keepErrors: true, keepValues: true }), 2000);
-      }
     } catch (err) {
       for (const key in err.response.data) {
         setError(key, { message: err.response.data[key].error });
