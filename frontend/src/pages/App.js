@@ -10,6 +10,7 @@ import Register from './Register/Register.js';
 import Users from './Users/Users.js';
 import CoursesPage from './CoursesPage/CoursesPage.js';
 import CoursePage from './CoursePage/CoursePage.js';
+import MainPage from './MainPage/MainPage.js';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
       <Header />
       <div className='content'>
         <Routes>
+          <Route path='/' element={<MainPage />} />
           <Route path='/login' element={<Login />} />
           <Route path='/courses' element={user ? <CoursesPage/> : <AllCourses />}/>
           <Route path='/register' element={<Register />} />

@@ -1,0 +1,25 @@
+.main-page {
+  flex: 1;
+}
+.main-page > img {
+  width: 250px;
+  height: 250px;
+  margin: 0 auto;
+  margin-top: 50px;
+  display: block;
+  animation: rotation 10s linear infinite;
+}
+.main-page > h1, .main-page > h2 {
+  text-align: center;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0) scale(0.7)
+  }
+  50% {
+    transform: rotate(180deg) scale(1.2)
+  }
+  100% {
+    transform: rotate(360deg) scale(0.7)
+  }
+}
