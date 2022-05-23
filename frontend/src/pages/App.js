@@ -8,7 +8,8 @@ import Login from './Login/Login.js';
 import Profile from './Profile/Profile.js';
 import Register from './Register/Register.js';
 import Users from './Users/Users.js';
-import CoursesPage from './Courses/CoursesPage.js';
+import CoursesPage from './CoursesPage/CoursesPage.js';
+import CoursePage from './CoursePage/CoursePage.js';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path='/users/:id' element={<Profile />} />
           <Route path='/users' element={<Users />} />
           <Route path='/courses' element={<CoursesPage />} />
+          <Route path='/courses/:id' element={<CoursePage />} />
         </Routes>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { useAuth } from '../../hooks/useAuth.js';
 import PaginateList from './../PaginateList/PaginateList';
 import './Courses.css';
 import api from './../../axios';
+import { Link } from 'react-router-dom';
 
 export default function Courses({ fetchCourses, title, style, limit = 2 }) {
   const { user } = useAuth();
@@ -11,7 +12,7 @@ export default function Courses({ fetchCourses, title, style, limit = 2 }) {
 
   useEffect(() => {
     async function getSubscribedCourses() {
-      if (user.id) {
+      if (user) {
         const response = await api.get(`/users/${user.id}/subscribedCourses`, { params: { limit: 100 } });
         const ids = response.data.result.reduce((acc, course) => {
           acc[course.id] = true;
@@ -73,7 +74,7 @@ export default function Courses({ fetchCourses, title, style, limit = 2 }) {
                   <p className='course__description'>{course.description || 'Без описания'}</p>
                 </div>
                 <div className='course__nav'>
-                <div className='course__nav-button'>Перейти к курсу</div>
+                <Link to={`/courses/${course.id}`} className='course__nav-button'>Перейти к курсу</Link>
                   {course.authorId === user?.id ? (
                     <>
                       <div className='course__nav-button' onClick={deleteCourse(course.id)}>Удалить курс</div>

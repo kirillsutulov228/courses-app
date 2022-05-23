@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import api from '../../axios.js';
 import { useAuth } from '../../hooks/useAuth.js';
-import './Courses.css';
+import './CoursesPage.css';
 import CreateCourse from '../CreateCourse/CreateCourse.js';
 import Courses from '../../components/Courses/Courses.js';
 

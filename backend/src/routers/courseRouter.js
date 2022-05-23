@@ -37,7 +37,7 @@ courseRouter.get('/users/:id/subscribedCourses', withPaginate(async ({ req, res,
   ];
 }));
 
-courseRouter.get('/courses/:id', sendOne(async (req) => {
+courseRouter.get('/courses/:id', sendOne(async ({ req }) => {
   return await Course.findByPk(req.params.id);
 }));
 
