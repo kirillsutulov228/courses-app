@@ -2,7 +2,9 @@ import Form from '../../components/Form/Form.js';
 import './Register.css';
 import api from '../../axios.js';
 import { useAuth } from '../../hooks/useAuth.js';
-import { useNavigate } from "react-router-dom";export default function Register() {
+import { useNavigate } from "react-router-dom";
+
+export default function Register() {
 
   const { register } = useAuth();
   let navigate = useNavigate();

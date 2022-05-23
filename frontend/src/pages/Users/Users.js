@@ -14,7 +14,7 @@ export default function Users(props) {
     setMaxPage(maxPage);
     return data.result;
   }, []);
-
+  
   return (
     <div className='users'>
       <h1 className='users-list__title'>Список пользователей</h1>
@@ -42,7 +42,7 @@ export default function Users(props) {
                     <tr>
                       <td>{user.username}</td>
                       <td>{user.email}</td>
-                      <td>{user.roles[0].id === 1 ? 'Пользователь' : 'Администратор'}</td>
+                      <td>{user.roles.find((role) => role.name === "admin") ? 'Администратор' : 'Пользователь'}</td>
                       <td className='actionBtn' style={{cursor: 'pointer'}} key={index} onClick={() => navigate(`/users/${user.id}`)}>Открыть профиль</td>
                     </tr>
                   ))}

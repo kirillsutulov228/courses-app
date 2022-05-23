@@ -2,19 +2,21 @@ import { Children, cloneElement } from 'react';
 import { useForm } from 'react-hook-form';
 import './Form.css';
 
-export default function Form({ children, schema = null, title = 'Form', submitTitle = 'Submit', className, onSubmit, successMessage }) {
-  const { register, setError, handleSubmit, formState } = useForm({ resolver: schema, reValidateMode: 'onSubmit' });
-  
+export default function Form({ children, schema = null, defaultValues, title = 'Form', submitTitle = 'Submit', className, onSubmit, successMessage }) {
+  const { register, setError, handleSubmit, formState, reset } = useForm({ resolver: schema, reValidateMode: 'onSubmit', defaultValues });
+  console.log(defaultValues);
   async function handler(data) {
     try {
       await onSubmit(data, setError);
+      reset(defaultValues, { keepIsSubmitted: true, keepValues: false });
+      setTimeout(() => reset(defaultValues, { keepErrors: true, keepValues: true }), 2000);
     } catch (err) {
       for (const key in err.response.data) {
         setError(key, { message: err.response.data[key].error });
       }
     }
   }
-  console.log(Children.count(children))
+
   return (
     <>
       <form className={`form ${className}`} onSubmit={handleSubmit(handler)} {...register('form')}>
@@ -25,6 +27,7 @@ export default function Form({ children, schema = null, title = 'Form', submitTi
             {cloneElement(child, {
               key: i,
               className: `form__input form__${child.props.type}-input`,
+              ref: register,
               ...child.props,
               ...register(child.props.name)
             })}

@@ -6,6 +6,7 @@ import { useAuth } from '../../hooks/useAuth.js';
 import './Profile.css';
 import CreateCourse from '../CreateCourse/CreateCourse.js';
 import Courses from '../../components/Courses/Courses.js';
+import RedactUser from '../RedactUser/RedactUser.js';
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ export default function Profile() {
   const [user, setUser] = useState(null);
   const { user: currUser } = useAuth();
   const [activePage, setActivePage] = useState('subscribedCourses');
-
+  console.log(currUser);
   useEffect(() => {
     async function fetchUser() {
       try {
@@ -52,7 +53,7 @@ export default function Profile() {
 
             {isCurrentUser ? (
               <>
-                <div className='profile__button'>Редактировать</div>
+                <div className='profile__button' onClick={() => { console.log('3er2r32'); setActivePage('redactUser') }}>Редактировать</div>
                 <div
                   className={'profile__button' + (activePage === 'createCourse' ? ` active` : '')}
                   onClick={() => setActivePage('createCourse')}
@@ -87,7 +88,7 @@ export default function Profile() {
               {activePage === 'subscribedCourses' && (
                 <Courses limit={5} fetchCourses={fetchCourses(`users/${id}/subscribedCourses`)} title={'Подписки на курсы'} />
               )}
-
+              {activePage === 'redactUser' && <RedactUser />}
             </div>
           </div>
         </div>

@@ -32,5 +32,6 @@ module.exports = {
   Course,
   Task,
   File,
-  Score
+  Score,
+  Role
 };

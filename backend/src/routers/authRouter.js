@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { User } = require('../models/models.js');
+const { User, Role } = require('../models/models.js');
 const jwt = require('jsonwebtoken');
 
 const authRouter = Router();
@@ -9,9 +9,8 @@ authRouter.post('/login', async (req, res) => {
   const username = req.body['username'] ?? null;
   const password = req.body['password'] ?? null;
   let user = null;
-
   if (username && password) {
-    user = await User.findOne({ where: { username } });
+    user = await User.findOne({ where: { username }, include: { model: Role, through: { attributes: [] } } });
     if (!user || !await user.checkPassword(password)) {
       return res.sendStatus(404);
     }
@@ -20,12 +19,12 @@ authRouter.post('/login', async (req, res) => {
   if (!user) {
     return res.sendStatus(404);
   }
-
+  console.log(user);
   const accessToken = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, { expiresIn: 900 });
   const refreshToken = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, { expiresIn: 1296000 });
   await user.update({ refreshToken });
   res.cookie('refreshToken', refreshToken);
-  return res.json({ user: { id: user.id, email: user.email, username: user.username }, accessToken });
+  return res.json({ user: { id: user.id, email: user.email, username: user.username, roles: user.roles }, accessToken });
 });
 
 authRouter.post('/refresh', async (req, res) => {
@@ -34,7 +33,7 @@ authRouter.post('/refresh', async (req, res) => {
   let user = null;
 
   if (refreshToken) {
-    user = await User.findOne({ where: { refreshToken } });
+    user = await User.findOne({ where: { refreshToken }, include: { model: Role, through: { attributes: [] } } });
     try {
       jwt.verify(refreshToken, JWT_SECRET);
     } catch(err) {
@@ -52,7 +51,7 @@ authRouter.post('/refresh', async (req, res) => {
   refreshToken = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, { expiresIn: 1296000 });
   await user.update({ refreshToken });
   res.cookie('refreshToken', refreshToken);
-  return res.json({ user: { id: user.id, email: user.email, username: user.username }, accessToken });
+  return res.json({ user: { id: user.id, email: user.email, username: user.username, roles: user.roles }, accessToken });
 })
 
 authRouter.all('/auth/**', (req, res, next) => {
@@ -66,7 +65,7 @@ authRouter.all('/auth/**', (req, res, next) => {
       return res.sendStatus(401);
     }
     const id = decoded['id'];
-    const user = await User.findByPk(id);
+    const user = await User.findByPk(id, { include: { model: Role, through: { attributes: [] } } } );
     if (!user) {
       return res.sendStatus(401);
     }
