@@ -8,8 +8,10 @@ export default function Form({ children, schema = null, defaultValues, title = '
   async function handler(data) {
     try {
       await onSubmit(data, setError);
-      reset(defaultValues, { keepIsSubmitted: true, keepValues: false });
-      setTimeout(() => reset(defaultValues, { keepErrors: true, keepValues: true }), 2000);
+      if (formState.isSubmitSuccessful) {
+        reset(defaultValues, { keepIsSubmitted: true, keepValues: false });
+        setTimeout(() => reset(defaultValues, { keepErrors: true, keepValues: true }), 2000);
+      }
     } catch (err) {
       for (const key in err.response.data) {
         setError(key, { message: err.response.data[key].error });
